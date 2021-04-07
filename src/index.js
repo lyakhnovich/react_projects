@@ -1,37 +1,82 @@
-import createClass from 'create-react-class';
-
-var contacts = [
+var CONTACTS = [
   {
     id: 1,
     name: 'Darth Vader',
-    phoneNumber: '+1666638478347834',
-    image: 'https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2015/10/28/1446048221859/1d906578-19f7-4854-a5a1-3e9e9048bf4a-1020x612.jpeg?width=445&quality=45&auto=format&fit=max&dpr=2&s=9cd1d0a9e76a121fda19d09baec10655'
+    phoneNumber: '+250966666666',
+    image: 'http://cs7.pikabu.ru/images/big_size_comm_an/2014-03_7/13962622876915.gif'
   }, {
     id: 2,
-    name: 'Lol Kekovich',
-    phoneNumber: '+166677777',
-    image: 'https://i.insider.com/5d9b86105d21aa3ac8312d2f?width=700'
+    name: 'Princess Leia',
+    phoneNumber: '+250966344466',
+    image: 'http://images6.fanpop.com/image/photos/33100000/CARRIE-FISHER-anakin-vader-and-princess-leia-33186069-190-149.gif'
   }, {
     id: 3,
-    name: 'Kek Lolov',
-    phoneNumber: '+144477777',
-    image: 'https://i.ytimg.com/vi/F1GezA5KfzE/maxresdefault.jpg'
+    name: 'Luke Skywalker',
+    phoneNumber: '+250976654433',
+    image: 'https://media1.giphy.com/media/b3tPrlRIgDQOc/200w.gif'
+  }, {
+    id: 4,
+    name: 'Chewbacca',
+    phoneNumber: '+250456784935',
+    image: 'https://media.giphy.com/media/RUUdVZqwpfTRS/giphy.gif'
   }
 ];
 
-var ContactList = React.createClass({
-  render: function () {
+var Contact = React.createClass({
+  render: function() {
     return (
-      <div>
-        <ul>
+      <li className="contact">
+        <img className="contact-image" src={this.props.image} width="60px" height="60px" />
+        <div className="contact-info">
+          <div className="contact-name"> {this.props.name} </div>
+          <div className="contact-number"> {this.props.phoneNumber} </div>
+        </div>
+      </li>
+    );
+  }
+});
+
+var ContactsList = React.createClass({
+  getInitialState: function() {
+    return {
+      displayedContacts: CONTACTS
+    };
+  },
+
+  handleSearch: function(event) {
+    var searchQuery = event.target.value.toLowerCase();
+    var displayedContacts = CONTACTS.filter(function(el) {
+      var searchValue = el.name.toLowerCase();
+      return searchValue.indexOf(searchQuery) !== -1;
+    });
+
+    this.setState({
+      displayedContacts: displayedContacts
+    });
+  },
+
+  render: function() {
+    return (
+      <div className="contacts">
+        <input type="text" className="search-field" onChange={this.handleSearch} />
+        <ul className="contacts-list">
           {
-            contacts.map(function (el) {
-              return <li>{el.name}</li>
+            this.state.displayedContacts.map(function(el) {
+              return <Contact
+                key={el.id}
+                name={el.name}
+                phoneNumber={el.phoneNumber}
+                image={el.image}
+              />;
             })
           }
         </ul>
       </div>
-    )
+    );
   }
-
 });
+
+ReactDOM.render(
+  <ContactsList />,
+  document.getElementById("content")
+);
