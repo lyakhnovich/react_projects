@@ -1,3 +1,10 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App.js";
+
+
+let createReactClass = require('create-react-class');
+
 
 let CONTACTS = [
   {
@@ -23,7 +30,7 @@ let CONTACTS = [
   }
 ];
 
-let Contact = React.createClass({
+let Contact = createReactClass({
   render: function() {
     return (
       <li className="contact">
@@ -37,7 +44,7 @@ let Contact = React.createClass({
   }
 });
 
-let ContactsList = React.createClass({
+let ContactsList = createReactClass({
   getInitialState: function() {
     return {
       displayedContacts: CONTACTS
