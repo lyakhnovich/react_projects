@@ -2,9 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App.js";
 
-
 let createReactClass = require('create-react-class');
-
 
 let CONTACTS = [
   {
@@ -20,7 +18,7 @@ let CONTACTS = [
   }, {
     id: 3,
     name: 'Luke Skywalker',
-    phoneNumber: '+250976654433',
+    phoneNumber: '+25097665443333',
     image: 'https://media2.giphy.com/media/ooFWU2tmYrrtC/200.gif?cid=95b279446582d0858a6ce1bbba9d77b0012e1fc57630cce4&rid=200.gif&ct=g'
   }, {
     id: 4,
@@ -80,9 +78,20 @@ let ContactsList = createReactClass({
           }
         </ul>
       </div>
+
     );
   }
 });
+
+let Test = createReactClass({
+
+    render:function () {
+        return (
+          <div>lol</div>
+        );
+    }
+  }
+);
 
 ReactDOM.render(
   <ContactsList />,
