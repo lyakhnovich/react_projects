@@ -31,11 +31,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),
-    new CopyPlugin({
-      patterns: [
-        {from: "./src/styles/style.css", to: "styles/style.css"},
-        {from: "./src/styles/style.css.map", to: "styles/style.css.map"},
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     {from: "./src/styles/style.css", to: "styles/style.css"},
+    //     {from: "./src/styles/style.css.map", to: "styles/style.css.map"},
+    //   ],
+    // }),
   ]
 };
